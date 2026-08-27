@@ -40,29 +40,30 @@
 
       .site-header {
         position: relative;
-        overflow: hidden;
         background: var(--black);
         border-bottom: 1px solid #5c481f;
       }
 
-      .banner {
-        display: grid;
-        place-items: center;
-        min-height: clamp(18rem, 47vw, 35rem);
-        padding: 1rem 1.5rem 0;
-      }
-
-      .banner-image {
-        display: block;
-        width: min(100%, 64rem);
-        height: auto;
-        object-fit: contain;
-      }
-
       .site-nav {
-        position: relative;
-        z-index: 1;
-        border-top: 1px solid rgba(231, 199, 120, 0.28);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        min-height: 6rem;
+        padding: 0 2rem 0 0;
+      }
+
+      .site-logo {
+        display: block;
+        flex: 0 1 20rem;
+        max-width: 50vw;
+        line-height: 0;
+      }
+
+      .site-logo img {
+        display: block;
+        width: 100%;
+        height: auto;
       }
 
       .site-nav ul {
@@ -70,11 +71,11 @@
         justify-content: center;
         gap: clamp(1.25rem, 5vw, 4.5rem);
         margin: 0;
-        padding: 1rem 1.25rem;
+        padding: 1rem 0;
         list-style: none;
       }
 
-      .site-nav a {
+      .site-nav li a {
         position: relative;
         display: inline-block;
         color: var(--gold);
@@ -89,7 +90,7 @@
           transform 180ms ease;
       }
 
-      .site-nav a::after {
+      .site-nav li a::after {
         position: absolute;
         right: 0;
         bottom: -0.35rem;
@@ -102,18 +103,18 @@
         transition: transform 180ms ease;
       }
 
-      .site-nav a:hover,
-      .site-nav a:focus-visible {
+      .site-nav li a:hover,
+      .site-nav li a:focus-visible {
         color: var(--gold-bright);
         transform: translateY(-2px);
       }
 
-      .site-nav a:hover::after,
-      .site-nav a:focus-visible::after {
+      .site-nav li a:hover::after,
+      .site-nav li a:focus-visible::after {
         transform: scaleX(1);
       }
 
-      .site-nav a:focus-visible {
+      .site-nav li a:focus-visible {
         outline: 2px solid var(--gold-bright);
         outline-offset: 0.5rem;
       }
@@ -151,6 +152,10 @@
         text-align: center;
       }
 
+      .about p {
+        margin-inline: auto;
+      }
+
       p {
         margin: 0;
         color: var(--text);
@@ -167,16 +172,22 @@
       }
 
       @media (max-width: 680px) {
-        .banner {
-          min-height: 13rem;
-          padding: 0;
+        .site-nav {
+          min-height: 5rem;
+          padding-right: 1rem;
+        }
+
+        .site-logo {
+          flex-basis: 11rem;
+          max-width: 42vw;
         }
 
         .site-nav ul {
-          gap: 1.1rem;
+          gap: 0.8rem;
         }
 
-        .site-nav a {
+        .site-nav li a {
+          font-size: 0.68rem;
           letter-spacing: 0.1em;
         }
       }
@@ -186,8 +197,8 @@
           scroll-behavior: auto;
         }
 
-        .site-nav a,
-        .site-nav a::after {
+        .site-nav li a,
+        .site-nav li a::after {
           transition: none;
         }
       }
@@ -195,16 +206,15 @@
   </head>
   <body id="top">
     <header class="site-header">
-      <div class="banner">
-        <img
-          class="banner-image"
-          src="{{ '/images/image0.png' | relative_url }}"
-          alt="Open Curtain Players"
-          width="1024"
-          height="559"
-        />
-      </div>
       <nav class="site-nav" aria-label="Main navigation">
+        <a class="site-logo" href="#top" aria-label="Open Curtain Players home">
+          <img
+            src="{{ '/images/logo.png' | relative_url }}"
+            alt=""
+            width="1024"
+            height="559"
+          />
+        </a>
         <ul>
           <li><a href="#top">Home</a></li>
           <li><a href="#tickets">Tickets</a></li>

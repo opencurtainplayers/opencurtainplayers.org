@@ -1,0 +1,29 @@
+---
+import SiteLayout from "../layouts/SiteLayout.astro";
+import PageIntro from "../components/PageIntro.astro";
+import LudusTickets from "../components/LudusTickets.astro";
+import { production } from "../data/site";
+---
+
+<SiteLayout
+  title="Tickets"
+  description="Book Open Curtain Players tickets through Ludus. A Christmas Carol Story opens December 18, 2026."
+>
+  <PageIntro
+    eyebrow="Your next theater experience"
+    title="A seat for the magic."
+    summary={`${production.title} opens ${production.opens}. Browse available performances and book with our ticketing partner, Ludus.`}
+  />
+  <div class="section container">
+    <div class="notice">
+      <p>
+        <strong>Planning your visit?</strong> Please check Ludus for the
+        performance venue, dates, times, prices, and availability. Our Valrico
+        office is not a performance venue.{" "}
+        <a href="/contact/">Ask us about access and sensory accommodations</a>{" "}
+        before booking.
+      </p>
+    </div>
+    <LudusTickets />
+  </div>
+</SiteLayout>

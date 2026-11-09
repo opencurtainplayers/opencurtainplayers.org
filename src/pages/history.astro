@@ -1,0 +1,61 @@
+---
+import SiteLayout from "../layouts/SiteLayout.astro";
+import PageIntro from "../components/PageIntro.astro";
+import { organization, production } from "../data/site";
+---
+
+<SiteLayout
+  title="Our history"
+  description="Founded March 31, 2026, in Valrico, Florida: learn about the beginnings of Open Curtain Players and our upcoming production."
+>
+  <PageIntro
+    eyebrow="Our story"
+    title="A new stage. A shared vision."
+    summary="Founded in Valrico, Florida, in 2026, Open Curtain Players began with a belief that everyone deserves to experience the magic of theater."
+  />
+  <section
+    class="section container section-split"
+    aria-labelledby="beginning-heading"
+  >
+    <h2 id="beginning-heading">Our opening chapter.</h2>
+    <div class="prose">
+      <p>
+        Our organization was founded on {organization.founded}. From the
+        beginning, our focus has been inclusive, sensory-friendly experiences
+        where performers, audience members, and their families can connect.
+      </p>
+      <p>
+        As a newly established organization, we are building our programs and
+        community relationships. This page records our beginnings and announced
+        work, rather than claiming a history of completed productions.
+      </p>
+      <ol class="timeline">
+        <li>
+          <p class="eyebrow">
+            <time datetime="2026-03-31">March 31, 2026</time>
+          </p>
+          <h3>Established in Florida</h3>
+          <p>
+            Open Curtain Players Inc. was incorporated as a Florida nonprofit
+            corporation.{" "}
+            <a href={organization.registry}>
+              View the Florida Division of Corporations record
+            </a>
+            .
+          </p>
+        </li>
+        <li>
+          <p class="eyebrow">
+            <time datetime={production.dateTime}>{production.opens}</time>
+            &middot; Upcoming
+          </p>
+          <h3>{production.title}</h3>
+          <p>
+            Our announced production opens December 18, 2026.
+            <a href="/tickets/">Find performance and ticket information</a>.
+          </p>
+        </li>
+      </ol>
+    </div>
+  </section>
+</SiteLayout>

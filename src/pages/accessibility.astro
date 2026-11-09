@@ -1,0 +1,53 @@
+---
+import SiteLayout from "../layouts/SiteLayout.astro";
+import PageIntro from "../components/PageIntro.astro";
+import { organization } from "../data/site";
+---
+
+<SiteLayout
+  title="Accessibility & visitor support"
+  description="Contact us for accessibility support, learn about our website accessibility approach, and find alternatives to the Ludus ticket panel."
+>
+  <PageIntro
+    eyebrow="Accessibility & visitor support"
+    title="Belonging starts with access."
+    summary="We want our website and theater experiences to be welcoming. Please tell us if something prevents you from finding information or taking part."
+  />
+  <section class="section container prose" aria-labelledby="support-heading">
+    <h2 id="support-heading">Ask for assistance</h2>
+    <p>
+      Email <a href={`mailto:${organization.email}`}>{organization.email}</a> or
+      call <a href={organization.phoneHref}>{organization.phone}</a> for help
+      with tickets, website information, or performance accommodations. If
+      reporting a website problem, include the page and what you were trying to
+      do.
+    </p>
+    <h2>Website accessibility approach</h2>
+    <p>
+      Our target is WCAG 2.1 Level A and AA. The website uses semantic page
+      structure, keyboard-accessible links, a skip link, visible focus
+      indicators, responsive layouts, and reduced-motion support. Automated
+      accessibility tests are part of the site's development checks.
+    </p>
+    <p>
+      Automated checks cannot establish full WCAG conformance. Manual
+      screen-reader, keyboard, zoom, and user testing remain necessary. We do
+      not claim that an automated scan certifies this website.
+    </p>
+    <h2>Third-party ticket booking</h2>
+    <p>
+      Ludus provides our embedded ticket booking service. Its content and
+      checkout are managed by Ludus and may have accessibility limitations that
+      our team cannot directly change. A direct Ludus booking link and our
+      contact details are available on the <a href="/tickets/">tickets page</a>
+      as alternatives to the embedded panel. Neither the direct link nor the
+      automated checks guarantees that the full checkout is accessible.
+    </p>
+    <h2>Performance access</h2>
+    <p>
+      Please contact us before booking to discuss your needs and the
+      accommodations available for your chosen performance. Check the event
+      listing for the performance venue; our office address is not a theater.
+    </p>
+  </section>
+</SiteLayout>

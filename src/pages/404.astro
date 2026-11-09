@@ -1,0 +1,23 @@
+---
+import SiteLayout from "../layouts/SiteLayout.astro";
+import PageIntro from "../components/PageIntro.astro";
+---
+
+<SiteLayout
+  title="Page not found"
+  description="This page could not be found. Return to Open Curtain Players or contact our team."
+>
+  <PageIntro
+    eyebrow="Page not found"
+    title="Let's find your way back."
+    summary="The page you requested is not here. Our main pages can help you find what you need."
+  />
+  <div class="container section actions">
+    <a class="button button-dark" href="/">
+      Return home
+    </a>
+    <a class="text-link" href="/contact/">
+      Contact our team
+    </a>
+  </div>
+</SiteLayout>

@@ -1,0 +1,132 @@
+---
+import SiteLayout from "../layouts/SiteLayout.astro";
+import PageIntro from "../components/PageIntro.astro";
+import { organization } from "../data/site";
+---
+
+<SiteLayout
+  title="Contact & transparency"
+  description="Contact Open Curtain Players Inc. in Valrico, Florida. Find our office address, EIN, Florida charity registration, and registration sources."
+>
+  <PageIntro
+    eyebrow="Contact & transparency"
+    title="Let's connect."
+    summary="Questions about a performance, access needs, volunteering, or supporting our work? Reach our team directly."
+  />
+  <section
+    class="section container section-split"
+    aria-labelledby="contact-heading"
+  >
+    <div>
+      <h2 id="contact-heading">Our contact details</h2>
+      <address class="contact-details">
+        <strong>{organization.legalName}</strong>
+        <br />
+        {organization.street}
+        <br />
+        {organization.locality}
+        <br />
+        United States
+      </address>
+      <p>
+        <a href={`mailto:${organization.email}`}>{organization.email}</a>
+      </p>
+      <p>
+        <a href={organization.phoneHref}>{organization.phone}</a>
+      </p>
+      <p class="small">
+        This is our office and registered principal address, not a performance
+        venue. Please contact us to arrange an office visit. Event locations are
+        listed with each performance on Ludus.
+      </p>
+    </div>
+    <div class="prose">
+      <p class="eyebrow">Ways to take part</p>
+      <h3>A community effort.</h3>
+      <p>
+        We welcome prospective corporate sponsors, grant funders, board and crew
+        volunteers, and people interested in our theater and education programs.
+        Email or call us to discuss current opportunities.
+      </p>
+      <p>
+        For an access request, let us know which performance or program you are
+        interested in and the support you would like to discuss. You do not need
+        to share a medical diagnosis.
+      </p>
+    </div>
+  </section>
+  <section
+    id="registration"
+    class="registration-band"
+    aria-labelledby="registration-heading"
+  >
+    <div class="container section">
+      <p class="eyebrow">Public organization information</p>
+      <h2 id="registration-heading">Registration & nonprofit status</h2>
+      <dl class="registration-list">
+        <div>
+          <dt>Legal name</dt>
+          <dd>{organization.legalName}</dd>
+        </div>
+        <div>
+          <dt>Organization type</dt>
+          <dd>Florida not-for-profit corporation</dd>
+        </div>
+        <div>
+          <dt>Incorporation date</dt>
+          <dd>{organization.founded}</dd>
+        </div>
+        <div>
+          <dt>Florida document number</dt>
+          <dd>{organization.corporationNumber}</dd>
+        </div>
+        <div>
+          <dt>Federal EIN</dt>
+          <dd>{organization.ein} (organization-provided)</dd>
+        </div>
+        <div>
+          <dt>Florida charity registration</dt>
+          <dd>{organization.charityRegistration} (organization-provided)</dd>
+        </div>
+        <div>
+          <dt>Federal tax status</dt>
+          <dd>501(c)(3) public charity (organization-reported)</dd>
+        </div>
+      </dl>
+      <div class="prose">
+        <h3>Sources & verification</h3>
+        <p>
+          The{" "}
+          <a href={organization.registry}>
+            Florida Division of Corporations public record
+          </a>{" "}
+          lists our active nonprofit corporation, March 31, 2026 filing date,
+          and principal address shown above. That record currently lists no
+          FEI/EIN number; state incorporation is not evidence of federal tax
+          exemption.
+        </p>
+        <p>
+          The EIN, Florida charity registration number, federal tax status,
+          email, and phone on this site were supplied by the organization.
+          Independent verification of those details has not been completed for
+          this website. An IRS determination letter and a Florida charitable
+          registration record have not yet been published here.
+        </p>
+        <p>
+          To check federal status, use the{" "}
+          <a href="https://apps.irs.gov/app/eos/">
+            IRS Tax Exempt Organization Search
+          </a>{" "}
+          with EIN {organization.ein}. For state charitable registration,
+          consult the{" "}
+          <a href="https://csapp.fdacs.gov/CSPublicApp/CheckACharity/CheckACharity.aspx">
+            Florida Check-A-Charity search
+          </a>{" "}
+          using {organization.charityRegistration}. Please contact us to request
+          supporting documents before relying on tax-deductibility or
+          registration claims.
+        </p>
+      </div>
+    </div>
+  </section>
+</SiteLayout>

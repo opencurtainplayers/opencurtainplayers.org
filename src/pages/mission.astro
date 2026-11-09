@@ -1,0 +1,51 @@
+---
+import SiteLayout from "../layouts/SiteLayout.astro";
+import PageIntro from "../components/PageIntro.astro";
+import { organization } from "../data/site";
+---
+
+<SiteLayout
+  title="Our mission"
+  description="Learn how Open Curtain Players breaks down barriers through inclusive, sensory-friendly theater for people of all abilities."
+>
+  <PageIntro
+    eyebrow="Our purpose"
+    title="Theater without barriers."
+    summary={organization.mission}
+  />
+  <section
+    class="section container section-split"
+    aria-labelledby="belong-heading"
+  >
+    <h2 id="belong-heading">
+      Connect.
+      <br />
+      Shine. Belong.
+    </h2>
+    <div class="prose">
+      <p>
+        Open Curtain Players Inc. is a Florida nonprofit theater dedicated to
+        breaking down barriers in the performing arts. We welcome performers and
+        audience members of all neurodivergent and physical abilities.
+      </p>
+      <p>
+        Inclusion shapes our approach to productions, arts education, sensory
+        accommodations, and community engagement. We want families to share
+        high-quality performances in an environment without judgment.
+      </p>
+      <p>
+        Every visitor's needs are different. Please talk with us about your
+        access requirements before attending so we can discuss available
+        support.
+      </p>
+      <div class="actions">
+        <a class="button button-dark" href="/programs/">
+          Explore our work
+        </a>
+        <a class="text-link" href="/contact/">
+          Discuss an accommodation
+        </a>
+      </div>
+    </div>
+  </section>
+</SiteLayout>

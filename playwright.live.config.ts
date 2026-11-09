@@ -13,15 +13,15 @@ export default defineConfig({
   ],
   use: {
     ...devices["Desktop Chrome"],
-    baseURL: liveSiteUrl ?? "http://127.0.0.1:4321",
+    baseURL: liveSiteUrl ?? "http://127.0.0.1:4322",
     reducedMotion: "reduce",
     trace: "retain-on-failure",
   },
   webServer: liveSiteUrl
     ? undefined
     : {
-        command: "npm run preview",
-        url: "http://127.0.0.1:4321",
+        command: "npm run preview -- --port 4322",
+        url: "http://127.0.0.1:4322",
         reuseExistingServer: false,
         timeout: 30000,
       },

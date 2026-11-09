@@ -1,7 +1,7 @@
 import { test, expect } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 import { navigation, organization } from "../../src/data/site";
-import { ticketEmbedUrl, ticketUrl } from "../../src/lib/tickets.mjs";
+import { ticketEmbedUrl } from "../../src/lib/tickets.mjs";
 
 const pages = [
   ...navigation.map(({ href }) => href),
@@ -27,6 +27,7 @@ for (const path of pages) {
     await expect(page.locator("html")).toHaveAttribute("lang", "en");
     await expect(page.getByRole("heading", { level: 1 })).toHaveCount(1);
     await expect(page.getByRole("main")).toBeVisible();
+    await expect(page.locator('a[href*="ludus.com"]')).toHaveCount(0);
     await expect(page.locator('meta[name="description"]')).toHaveAttribute(
       "content",
       /.+/,
@@ -124,7 +125,7 @@ test("navigation opens real pages and internal links resolve", async ({
           .filter((href) => href.startsWith("/")),
       );
     for (const href of hrefs) {
-      const url = new URL(href, "http://127.0.0.1:4321");
+      const url = new URL(href, page.url());
       if (url.hash) {
         await page.goto(href);
         await expect(page.locator(url.hash)).toHaveCount(1);
@@ -157,16 +158,27 @@ test("contact details and registration provenance remain visible", async ({
   ).toHaveAttribute("href", organization.phoneHref);
 });
 
-test("Ludus configuration, booking fallback, and trusted resizing work", async ({
+test("all-event booking, contact assistance, and trusted resizing work", async ({
   page,
 }) => {
   await page.goto("/tickets/");
   const frame = page.locator("#ludusWidget");
   await expect(frame).toHaveAttribute("src", ticketEmbedUrl);
-  await expect(frame).toHaveAttribute("title", /tickets provided by Ludus/);
+  await expect(frame).toHaveAttribute(
+    "title",
+    "Open Curtain Players event booking",
+  );
+  const embed = new URL((await frame.getAttribute("src"))!);
+  expect(embed.searchParams.get("sections")).toBe("all");
+  expect(embed.searchParams.get("show_id")).toBe("");
+  expect(embed.searchParams.get("category_id")).toBe("");
+  await expect(page.getByRole("main")).not.toContainText(/ludus/i);
+  await expect(page.locator(".notice")).not.toContainText(/office/i);
   await expect(
-    page.getByRole("link", { name: "Book directly on Ludus" }),
-  ).toHaveAttribute("href", ticketUrl);
+    page.getByRole("link", {
+      name: "Ask us about access and sensory accommodations",
+    }),
+  ).toHaveAttribute("href", "/contact/");
   await expect(
     page.getByRole("link", { name: "contact our team for assistance" }),
   ).toBeVisible();
@@ -220,12 +232,12 @@ test("Ludus configuration, booking fallback, and trusted resizing work", async (
   await expect(frame).toBeInViewport();
 });
 
-test("content and booking alternatives work without JavaScript", async ({
+test("content and booking assistance work without JavaScript", async ({
   browser,
 }, testInfo) => {
   const context = await browser.newContext({
     javaScriptEnabled: false,
-    baseURL: "http://127.0.0.1:4321",
+    baseURL: testInfo.project.use.baseURL,
     viewport: testInfo.project.use.viewport,
   });
   const page = await context.newPage();
@@ -235,7 +247,7 @@ test("content and booking alternatives work without JavaScript", async ({
   await page.goto("/tickets/");
   await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
   await expect(
-    page.getByRole("link", { name: "Book directly on Ludus" }),
+    page.getByRole("link", { name: "contact our team for assistance" }),
   ).toBeVisible();
   await page
     .getByRole("navigation")

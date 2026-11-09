@@ -1,25 +1,21 @@
 ---
-import { ticketEmbedUrl, ticketUrl } from "../lib/tickets.mjs";
+import { ticketEmbedUrl } from "../lib/tickets.mjs";
 ---
 
 <section class="ticket-panel" aria-labelledby="booking-heading">
   <div class="ticket-panel-header">
     <div>
       <p class="eyebrow">Box office</p>
-      <h2 id="booking-heading">Choose your performance</h2>
+      <h2 id="booking-heading">Choose your event</h2>
     </div>
-    <a class="button button-dark" href={ticketUrl}>
-      Book directly on Ludus
-    </a>
   </div>
   <p id="ticket-help">
-    Tickets are provided by Ludus. If the booking panel does not load or is
-    difficult to use, follow the direct booking link or{" "}
+    If the booking panel does not load or is difficult to use,{" "}
     <a href="/contact/">contact our team for assistance</a>.
   </p>
   <iframe
     id="ludusWidget"
-    title="Open Curtain Players tickets provided by Ludus"
+    title="Open Curtain Players event booking"
     aria-describedby="ticket-help"
     src={ticketEmbedUrl}
     width="100%"

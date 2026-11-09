@@ -1,6 +1,5 @@
 export const ticketOrigin = "https://opencurtainplayers.ludus.com";
-export const ticketUrl = `${ticketOrigin}/index.php?show_id=200545825`;
-export const ticketEmbedUrl = `${ticketOrigin}/embed/index.php?widget=1&show_id=200545825&sections=events&category_id=&hideNav=true`;
+export const ticketEmbedUrl = `${ticketOrigin}/embed/index.php?widget=1&show_id=&sections=all&category_id=&hideNav=true`;
 
 export function getTicketHeight(data) {
   if (typeof data !== "string") return null;

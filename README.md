@@ -33,10 +33,12 @@ npm run test:e2e
 npm run test:tickets:live
 ```
 
-The browser suite checks the production build at `127.0.0.1:4321`, using desktop
-and mobile Chromium. It covers rendered pages, navigation, internal links and
+The browser suite checks the production build at `127.0.0.1:4322`, using desktop
+and mobile Chromium, without interrupting the development site on port 4321.
+It covers rendered pages, navigation, internal links and
 anchors, organization details, keyboard skip links, 320px reflow, reduced motion,
-JavaScript-disabled access, ticket fallback links, and trusted widget resizing.
+JavaScript-disabled access, ticket assistance links, all-event embed filters,
+absence of direct provider links, and trusted widget resizing.
 Node tests cover malformed resize messages and origin/source checks.
 
 The first-party axe suite scans every rendered page (including the custom 404)
@@ -80,15 +82,18 @@ incomplete axe findings and manually test screen readers (including VoiceOver an
 NVDA), logical keyboard order and visible focus, text zoom, 400% browser zoom,
 text spacing overrides, and the complete third-party booking/checkout flow.
 Never submit purchases during automated checks. Escalate Ludus-owned findings to
-the provider; retain the direct booking and team-contact alternatives.
+the provider; retain the team-contact assistance option.
 
 ## Ticket integration
 
-`src/lib/tickets.mjs` preserves Ludus show `200545825`, `sections=events`, and
-`hideNav=true` from the original widget. The iframe uses the same public Ludus
+`src/lib/tickets.mjs` uses `sections=all`, with empty show and category filters,
+so the embed is not restricted to one production or event category.
+`hideNav=true` is retained from the original widget. The iframe uses the same public Ludus
 embed endpoint instead of `document.write`, has a descriptive title, allows
 scrolling, and validates both the origin and source of resize messages. The
-direct booking link remains available when the embed or JavaScript fails.
+team-contact assistance link remains available when the embed or JavaScript fails.
+Public site copy does not promote the provider or link visitors directly to its
+website; booking remains embedded on the tickets page.
 
 ## Content verification and application blockers
 

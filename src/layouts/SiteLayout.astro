@@ -1,0 +1,101 @@
+---
+import { navigation, organization } from "../data/site";
+import "../styles/site.css";
+
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+const path = Astro.url.pathname === "/404/" ? "/404.html" : Astro.url.pathname;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#10110f" />
+    {path === "/404.html" && <meta name="robots" content="noindex" />}
+    <title>{title} | {organization.name}</title>
+    <link rel="canonical" href={new URL(path, Astro.site)} />
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">
+      Skip to main content
+    </a>
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="brand" href="/" aria-label="Open Curtain Players home">
+          <img
+            src="/images/logo.png"
+            alt=""
+            width="1024"
+            height="559"
+            fetchpriority="high"
+          />
+        </a>
+        <nav aria-label="Main navigation">
+          <ul>
+            {navigation.map(({ href, label }) => (
+              <li>
+                <a
+                  href={href}
+                  aria-current={path === href ? "page" : undefined}
+                >
+                  {label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <main id="main-content" tabindex="-1">
+      <slot />
+    </main>
+    <footer class="site-footer">
+      <div class="footer-grid container">
+        <div>
+          <p class="footer-name">{organization.legalName}</p>
+          <p>Inclusive theater. Shared experiences. A place to belong.</p>
+          <p>Florida nonprofit corporation &middot; Founded 2026</p>
+        </div>
+        <div>
+          <h2 class="footer-heading">Our office</h2>
+          <address>
+            {organization.street}
+            <br />
+            {organization.locality}
+            <br />
+            <a href={`mailto:${organization.email}`}>{organization.email}</a>
+            <br />
+            <a href={organization.phoneHref}>{organization.phone}</a>
+          </address>
+          <p class="small">Office address, not a performance venue.</p>
+        </div>
+        <div>
+          <h2 class="footer-heading">Organization details</h2>
+          <p>EIN: {organization.ein}</p>
+          <p>
+            Florida charity registration: {organization.charityRegistration}
+          </p>
+          <p>
+            <a href="/contact/#registration">Registration details & sources</a>
+          </p>
+          <p>
+            <a href="/accessibility/">Accessibility & visitor support</a>
+          </p>
+        </div>
+      </div>
+      <div class="footer-bottom container">
+        <p>
+          &copy; {new Date().getFullYear()} {organization.legalName}
+        </p>
+        <a href="/tickets/">Find your next performance</a>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,61 @@
+---
+import SiteLayout from "../layouts/SiteLayout.astro";
+import PageIntro from "../components/PageIntro.astro";
+import { production, programs } from "../data/site";
+---
+
+<SiteLayout
+  title="Programs & projects"
+  description="Explore sensory-friendly productions, accessible arts education, sensory accommodations, and community engagement at Open Curtain Players."
+>
+  <PageIntro
+    eyebrow="Our work"
+    title="Creativity, with room for everyone."
+    summary="Our work brings inclusive performance, learning, and community connection together. Contact us for current program dates, availability, and participation details."
+  />
+  <section class="section container" aria-labelledby="current-heading">
+    <div class="feature-card">
+      <div>
+        <p class="eyebrow">Current project &middot; Upcoming production</p>
+        <h2 id="current-heading">{production.title}</h2>
+        <p class="date-line">
+          Opens <time datetime={production.dateTime}>{production.opens}</time>
+        </p>
+        <p>
+          Explore performances and venue details with our ticketing partner,
+          Ludus. For sensory accommodations and access questions, contact our
+          team before booking.
+        </p>
+      </div>
+      <a class="button button-dark" href="/tickets/">
+        Find tickets
+      </a>
+    </div>
+  </section>
+  <section
+    class="section container section-topless"
+    aria-labelledby="programs-heading"
+  >
+    <p class="eyebrow">Our program areas</p>
+    <h2 id="programs-heading">Different ways to take part.</h2>
+    <div class="card-grid two-columns">
+      {programs.map((program) => (
+        <article class="card">
+          <h3>{program.title}</h3>
+          <p>{program.description}</p>
+          <p class="small">{program.detail}</p>
+        </article>
+      ))}
+    </div>
+    <div class="callout">
+      <h3>Help us open more doors.</h3>
+      <p>
+        We welcome inquiries from prospective sponsors, grant funders, board and
+        crew volunteers, performers, and families.
+      </p>
+      <a class="text-link" href="/contact/">
+        Ask about getting involved
+      </a>
+    </div>
+  </section>
+</SiteLayout>

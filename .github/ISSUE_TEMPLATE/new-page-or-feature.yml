@@ -1,0 +1,84 @@
+name: New page or feature
+description: Request a website page, feature, content update, or navigation change.
+title: "[Website]: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Tell us what you would like to add or change on the Open Curtain Players website.
+        Choose an existing page or **New page**, then describe the change and how visitors should find it.
+        Complete **New page details** only when adding a page. Photos and other supporting files are optional.
+
+  - type: dropdown
+    id: page
+    attributes:
+      label: Where should the change live?
+      description: Choose the current page to update, or select New page if the change needs its own page.
+      options:
+        - Home (/)
+        - Mission (/mission/)
+        - History (/history/)
+        - Programs & projects (/programs/)
+        - Tickets (/tickets/)
+        - Contact & transparency (/contact/)
+        - Accessibility & visitor support (/accessibility/)
+        - Not found / custom 404 (/404.html)
+        - New page
+    validations:
+      required: true
+
+  - type: textarea
+    id: change-details
+    attributes:
+      label: What would you like to add or change?
+      description: Explain the change, who it is for, and why it is needed. Include proposed wording, links, or how the feature should work.
+      placeholder: |
+        What should be added or changed?
+        Who will use it, and what should they be able to do?
+        What text, links, or other content should be included?
+    validations:
+      required: true
+
+  - type: textarea
+    id: new-page-details
+    attributes:
+      label: New page details
+      description: If you selected New page, provide its title and preferred URL. Skip this field for changes to an existing page.
+      placeholder: |
+        Page title: Volunteer
+        Preferred URL: /volunteer/
+
+  - type: dropdown
+    id: navigation-location
+    attributes:
+      label: Where should visitors find the link?
+      description: For a new page, choose where its link should appear. For an existing-page change, indicate whether any navigation needs to be added.
+      options:
+        - No new link needed (existing-page changes only)
+        - Main navigation at the top of every page
+        - Footer on every page
+        - Link or button on an existing page
+        - More than one location (describe below)
+        - Please recommend a location
+    validations:
+      required: true
+
+  - type: textarea
+    id: navigation-details
+    attributes:
+      label: Link text and placement
+      description: For a new page or navigation change, give the link text, the existing page or menu that should contain it, and its position. If you need a recommendation, describe how visitors should discover it. Otherwise write "No new link needed."
+      placeholder: |
+        Link text: Volunteer with us
+        Add it to: Programs & projects (/programs/)
+        Position: Below the Community engagement section
+        Also add to: Main navigation, after Programs & projects
+    validations:
+      required: true
+
+  - type: textarea
+    id: photos-and-files
+    attributes:
+      label: Photos and supporting files (optional)
+      description: Drag and drop, paste, or attach photos, screenshots, mockups, or documents here. For each photo, describe where it should appear and provide a caption, image description (alt text), and credit if needed.
+      placeholder: Attach files here and explain how each should be used.
